@@ -24,6 +24,7 @@ h6 {
 }
 
 p {
+	text-align: justify;
 	margin-bottom: var(--space-md);
 	font-weight: var(--font-regular);
 }
