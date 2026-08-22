@@ -29,9 +29,14 @@ p {
 	font-weight: var(--font-regular);
 }
 
-.text-meta {
+.text-meta,
+.text-footer {
 	font-size: var(--text-xs);
 	font-weight: var(--font-small);
 	color: var(--text-meta);
 	line-height: var(--leading-normal);
+}
+
+.text-footer {
+	text-align: center;
 }
