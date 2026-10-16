@@ -3,7 +3,8 @@
    Minimalist, elegant, theme-aware (light / dark).
    Sections: 1 Tokens · 2 Base · 3 Typography · 4 Layout
    5 Nav · 6 Card · 7 Button · 8 Tags · 9 Table · 10 Avatar
-   11 Project · 12 Link · 13 Modal · 14 CV · 15 Print
+   11 Project · 12 Link · 13 Modal · 14 CV · 15 — ·
+   16 Responsive · 17 Print
    ========================================================= */
 
 /* =========================================================
@@ -584,10 +585,7 @@ footer {
 	line-height: var(--leading-relaxed);
 }
 
-@media (max-width: 768px) {
-	.project-grid { grid-template-columns: 1fr; gap: var(--space-lg); }
-	.project-image { height: 210px; }
-}
+/* (project-grid responsive rules live in the consolidated section 16) */
 
 /* =========================================================
    12 · LINK
@@ -760,13 +758,69 @@ footer {
 .cv-ats li { margin-bottom: var(--space-2xs); text-align: left; }
 .cv-ats p { text-align: left; }
 
-@media (max-width: 640px) {
+/* (cv-header / cv controls responsive rules live in consolidated section 16) */
+
+/* =========================================================
+   16 · RESPONSIVE (web → tablet → phone)
+   ========================================================= */
+
+/* Tablet and below */
+@media (max-width: 768px) {
+	.container { padding: var(--space-lg) var(--space-md); }
+
+	.card { padding: var(--space-lg); }
+
+	.project-grid { grid-template-columns: 1fr; gap: var(--space-lg); }
+	.project-image { height: 210px; }
+
+	.nav-group { gap: var(--space-md); }
+
+	/* CV header stacks, avatar sits above the text */
 	.cv-header { flex-direction: column; align-items: flex-start; }
+
+	/* CV controls stack; print button drops to its own line */
+	.cv-controls__row { align-items: flex-start; }
 	.cv-print-btn { margin-left: 0; }
 }
 
+/* Phone */
+@media (max-width: 480px) {
+	.container { padding: var(--space-md) var(--space-sm); }
+
+	.card { padding: var(--space-md); border-radius: var(--radius-md); }
+
+	h1 { font-size: var(--text-xl); }
+	h2 { font-size: var(--text-lg); }
+	h3 { font-size: var(--text-md); }
+
+	/* Navbar: wrap neatly, comfortable tap targets, keep nav links on their
+	   own line and the toggles grouped. */
+	.navbar { padding: var(--space-sm) var(--space-md); }
+	.nav-group {
+		gap: var(--space-sm) var(--space-md);
+		justify-content: center;
+	}
+	.nav-btn { padding: var(--space-2xs) 0; font-size: var(--text-sm); }
+
+	/* Tags/labels: let the label sit full-width above its tags */
+	.tag-label { width: 100%; }
+
+	/* Project cards a touch shorter image on tiny screens */
+	.project-image { height: 180px; }
+	.project-content { padding: var(--space-md); }
+	.project-title { font-size: var(--text-lg); }
+
+	/* CV + ATS padding eases on small screens */
+	.cv-ats { padding: var(--space-md); }
+
+	/* Role/format button groups wrap and fill available width nicely */
+	.cv-role-group,
+	.cv-format-group { width: 100%; }
+	.cv-controls__label { min-width: 0; }
+}
+
 /* =========================================================
-   15 · PRINT (A4 — clean, high-contrast, no UI chrome)
+   17 · PRINT (A4 — clean, high-contrast, no UI chrome)
    ========================================================= */
 @media print {
 	@page { size: A4; margin: 15mm; }
