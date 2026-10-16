@@ -1,204 +1,48 @@
-<div class="page-stack cv-content">
+<div class="page-stack cv-page">
 
-    <!-- ================= HEADER ================= -->
-    <div class="card">
+    <!-- ================= CV CONTROLS (hidden on print) ================= -->
+    <div class="card cv-controls no-print">
 
-        <div class="cv-header">
+        <div class="cv-controls__row">
+            <span class="cv-controls__label">Role</span>
+            <div class="cv-role-group" role="group" aria-label="CV role">
+                <button class="button button--secondary cv-role-btn is-active" data-role="general">General</button>
+                <button class="button button--secondary cv-role-btn" data-role="data-science">Data Science</button>
+                <button class="button button--secondary cv-role-btn" data-role="teaching">Teaching</button>
+                <button class="button button--secondary cv-role-btn" data-role="it">IT</button>
+            </div>
+        </div>
 
-            <!-- AVATAR -->
-            <img 
-                src="assets/Avatar.jpg" 
-                alt="Profile Photo"
-                class="avatar cv-avatar"
-            />
-
-            <!-- INFO -->
-            <div class="cv-info">
-
-                <h1>Wafiatul Khoiriah H</h1>
-
-                <p class="text-meta">
-                    Quantitative Data Analyst | Business Intelligence
-                </p>
-
-                <p>
-                    With a solid foundation in Mathematics, I view data as a puzzle waiting to be solved. I specialize in quantitative modeling, interactive BI dashboards, and end-to-end data analysis. I bridge the gap between heavy technical analytics and strategic business value, making data simple, visually compelling, and actionable.
-                </p>
-
+        <div class="cv-controls__row">
+            <span class="cv-controls__label">Format</span>
+            <div class="cv-format-group" role="group" aria-label="CV format">
+                <button class="button button--secondary cv-format-btn is-active" data-format="styled">Styled</button>
+                <button class="button button--secondary cv-format-btn" data-format="ats">ATS</button>
             </div>
 
+            <button type="button" class="button button--primary cv-print-btn" onclick="window.print()">
+                Print / Save PDF
+            </button>
         </div>
+
+        <p class="text-meta cv-controls__hint">
+            Styled view is for the web. ATS view is a plain, single-column layout optimized for
+            applicant tracking systems — use &ldquo;Print / Save PDF&rdquo; to export it.
+        </p>
 
     </div>
 
-
-    <!-- ================= EXPERIENCE ================= -->
-    <div class="card-group">
-
-        <div class="card">
-
-            <h1>Experience</h1>
-
-            <h3>University Lecturer</h3>
-            <p class="text-meta">Nurul Huda University · 2026</p>
-            <p>
-                Teaching the core mechanics of modern computation.
-                In the Mathematics program, I lead courses in Partial Differential Equations,
-                Computational Mathematics, and Numerical Methods. I also bridge tech and math
-                by lecturing Numerical Methods for Computer Science (Teknik Informatika)
-                majors, focusing on turning theoretical math into functional algorithms.
-            </p>
-
-            <h3>Warehouse Operations Specialist</h3>
-            <p class="text-meta">Payung Mas Premium · 2026</p>
-            <p>
-                Optimizing supply chain logistics and warehouse efficiency from the ground up. I oversee end-to-end stock flow, streamline inventory accuracy, and manage seamless fulfillment processes to keep daily operations running with zero friction.
-            </p>
-
-            <h3>Business Operations Administrator</h3>
-            <p class="text-meta">Payung Berlian Nusantara · 2026</p>
-            <p>
-                Bridging administrative organization with strategic business execution. I manage operational workflows, analyze process metrics, and cross-functionally coordinate team communications to ensure maximum productivity and operational compliance.
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <!-- ================= PROJECTS / WORK ================= -->
-    <div class="card-group">
-
-        <div class="card">
-
-            <h1>Projects / Work</h1>
-
-            <div class="card-group">
-
-            <!-- PROJECT 1 -->
-            <div class="project-item">
-
-                <h3>Personal Portfolio</h3>
-                <!-- <p class="text-meta">Role · Type of Project</p> -->
-
-                <p>
-                    Turning Raw Numbers into Business Clarity. Here’s where mathematics meets visual intelligence. Explore how I dissect complex datasets, model trends, and build interactive dashboards that drive smarter decisions.
-                </p>
-
-                <div class="tag-row">
-                    <span class="tag">Ms Excel</span>
-                    <span class="tag">Python</span>
-                    <span class="tag">Power BI</span>
-                </div>
-
-            </div>
-
-            <!-- PROJECT 2 -->
-            <!-- <div class="project-item">
-
-                <h3>Another Project</h3>
-
-                <p>
-                    Brief explanation of another project, including purpose and outcome.
-                </p>
-
-                <div class="tag-row">
-                    <span class="tag">Skill</span>
-                    <span class="tag">Skill</span>
-                    <span class="tag">Skill</span>
-                </div>
-
-            </div> -->
-
-            </div>
-
-        </div>
-
-    </div> 
-
-
-    <!-- ================= EDUCATION ================= -->
-    <div class="card-group">
-
-        <div class="card">
-
-            
-            <h1>Education</h1>
-            <div class="card-group">
-                <div class="card">
-                    <h3>Institut Teknologi Sepuluh Nopember</h3>
-                    <p class="text-meta">Master of Mathematics · 2023 - 2025</p>
-                    <p>
-                        Building on strong academic discipline and a continuous drive for self-development, my Master's thesis advanced graph theory research: "Menentukan Bilangan Kromatik Lokasi pada Graf Hasil Amalgamasi Sisi Graf Bunga Matahari dan Graf Helm dengan Graf Berlian." Combining advanced quantitative logic with a passion for continuous learning. Holding an Master of Mathematics (3.51 GPA), I specialized in Computational Mathematics with focus on structural graph analysis and graph coloring algorithms for my thesis. Known for my academic rigor, self-motivation, and ability to master high-level theoretical concepts and translate them into actionable problem-solving skills.
-                    </p>
-                </div>
-                
-                <div class="card">
-                    <h3>Riau University</h3>
-                    <p class="text-meta">Bachelor of Scince · 2015 - 2019</p>
-                    <p>
-                        Mathematics Graduate (B.Sc.) | Actuarial Science Focus
-        Graduated with a 3.49 GPA from Universitas Riau, combining high academic discipline with a strong drive for continuous growth. Specializing in Actuarial Mathematics, my thesis tackled life insurance modeling ("Uang Pertanggungan Asuransi Jiwa Seumur Hidup dengan Tiga Model Pembayaran Premi"). Delving deep into risk modeling and life insurance payout structures for my thesis. I bridge theoretical mastery with a proactive learning mindset, ready to tackle high-impact analytical challenges.
-                    </p>
-                </div>
-            </div>
-        </div>
-            
-
-    </div>
-
-
-    <!-- ================= CONTACT ================= -->
-    <div class="card-group">
-
-        <div class="card">
-
-            <h1>Contact</h1>
-
-            <p>
-                Feel free to get in touch for opportunities, collaboration, or inquiries.
-            </p>
-
-        
-
-            <div class="card">
-
-                <div class="tag-group">
-
-                    <div class="tag-row">
-                        <span class="tag-label text-meta">Email</span>
-                        <a class="link" href="w.harahap55@yahoo.com" class="text-meta">w.harahap55@yahoo.com</a>
-                    </div>
-
-                    <div class="tag-row">
-                        <span class="tag-label text-meta">Website</span>
-                        <a class="link" href="https://wafiatulkh.github.io/" class="text-meta">wafiatulkh.github.io</a>
-                    </div>
-
-                    <div class="tag-row">
-                        <span class="tag-label text-meta">LinkedIn</span>
-                        <a class="link" href="https://www.linkedin.com/in/wekahawekaha" target="_blank" class="text-meta">linkedin.com/in/wekahawekaha</a>
-                    </div>
-                    
-                    <div class="tag-row">
-                        <span class="tag-label">WhatsApp</span>
-                        <a class="link" href="https://wa.me/6289502880517" target="_blank">
-                            089502880517
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
+    <!-- ================= CV DOCUMENT (swapped by HTMX) ================= -->
+    <div id="cv-document"
+        class="cv-document"
+        hx-get="/pages/contents/cv/styled-general.html"
+        hx-trigger="load"
+        hx-swap="innerHTML">
     </div>
 
 </div>
 
-
-<!-- ================= PRINT BUTTON ================= -->
-<div style="display: flex; justify-content: center; margin-top: 1rem;">
-    <button onclick="window.print()" class="button button--primary">
-        Print CV
-    </button>
-</div>
+<script>
+    /* Initialise the CV switcher once this fragment is in the DOM. */
+    if (window.initCvSwitcher) window.initCvSwitcher();
+</script>

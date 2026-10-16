@@ -1,4 +1,4 @@
-/* ================= HEADER CV ================= */
+/* ================= CV HEADER ================= */
 .cv-header {
 	display: flex;
 	gap: var(--space-lg);
@@ -6,14 +6,136 @@
 }
 
 .cv-avatar {
-    width: 96px;
-	height: 96px;   
+	width: 96px;
+	height: 96px;
 	flex-shrink: 0;
 }
 
 .cv-info {
 	flex: 1;
 	min-width: 0;
+}
+
+/* ================= CV CONTROLS (hub) ================= */
+.cv-controls {
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-md);
+}
+
+.cv-controls__row {
+	display: flex;
+	align-items: center;
+	gap: var(--space-sm);
+	flex-wrap: wrap;
+}
+
+.cv-controls__label {
+	min-width: 4rem;
+	font-size: var(--text-sm);
+	font-weight: var(--font-semibold);
+	color: var(--text-meta);
+}
+
+.cv-role-group,
+.cv-format-group {
+	display: inline-flex;
+	gap: var(--space-xs);
+	flex-wrap: wrap;
+}
+
+/* Active state for role/format toggle buttons */
+.cv-role-btn.is-active,
+.cv-format-btn.is-active {
+	background: var(--primary);
+	color: #fff;
+	border-color: var(--primary);
+}
+
+.cv-print-btn {
+	margin-left: auto;
+}
+
+.cv-controls__hint {
+	margin: 0;
+}
+
+/* ================= ATS LAYOUT ================= */
+.cv-ats {
+	background: var(--surface);
+	border: 1px solid var(--border);
+	border-radius: var(--radius-md);
+	padding: var(--space-xl);
+	color: var(--text-body);
+	line-height: var(--leading-normal);
+}
+
+.cv-ats__head {
+	margin-bottom: var(--space-lg);
+	padding-bottom: var(--space-md);
+	border-bottom: 2px solid var(--border);
+}
+
+.cv-ats__head h1 {
+	margin-bottom: var(--space-2xs);
+	font-size: var(--text-2xl);
+}
+
+.cv-ats__title {
+	margin: 0 0 var(--space-xs);
+	font-weight: var(--font-semibold);
+	color: var(--text-body);
+	text-align: left;
+}
+
+.cv-ats__contact {
+	margin: 0;
+	font-size: var(--text-sm);
+	color: var(--text-meta);
+	text-align: left;
+}
+
+.cv-ats__section {
+	margin-bottom: var(--space-lg);
+}
+
+.cv-ats__section h2 {
+	margin-bottom: var(--space-sm);
+	padding-bottom: var(--space-2xs);
+	border-bottom: 1px solid var(--border);
+	font-size: var(--text-md);
+	text-transform: uppercase;
+	letter-spacing: .05em;
+}
+
+.cv-ats__entry {
+	margin-bottom: var(--space-md);
+}
+
+.cv-ats__entry h3 {
+	margin-bottom: 0;
+	font-size: var(--text-md);
+}
+
+.cv-ats__meta {
+	margin: 0 0 var(--space-2xs);
+	font-size: var(--text-sm);
+	color: var(--text-meta);
+	text-align: left;
+}
+
+.cv-ats ul {
+	margin: var(--space-2xs) 0 0;
+	padding-left: 1.1rem;
+}
+
+.cv-ats li {
+	margin-bottom: var(--space-2xs);
+	text-align: left;
+}
+
+.cv-ats p {
+	text-align: left;
 }
 
 /* Responsive */
@@ -28,109 +150,183 @@
 		width: 96px;
 		height: 96px;
 	}
+
+	.cv-print-btn {
+		margin-left: 0;
+	}
 }
 
 /* =========================================================
-   PRINT (A4 CV)
+   PRINT (A4 CV) — clean, high-contrast, no UI chrome
    ========================================================= */
 @media print {
 
-    @page {
-        size: A4;
-        margin: 16mm;
-    }
+	@page {
+		size: A4;
+		margin: 15mm;
+	}
 
-    body {
-        background: #fff;
-        color: #000;
-        font-size: 12pt;
-        line-height: 1.4;
-    }
+	/* Force light, high-contrast output regardless of theme */
+	:root,
+	[data-theme="dark"] {
+		--text-title: #000;
+		--text-body: #000;
+		--text-meta: #333;
+		--surface: #fff;
+		--bg: #fff;
+		--border: #999;
+	}
 
-    .navbar {
-        display: none;
-    }
+	html,
+	body {
+		background: #fff !important;
+		color: #000 !important;
+		font-size: 11pt;
+		line-height: 1.4;
+	}
 
-    .container {
-        max-width: 100%;
-        padding: 0;
-    }
+	/* Hide all interactive / navigation chrome */
+	.navbar,
+	.theme-toggle,
+	.no-print,
+	.cv-controls,
+	footer,
+	#loading,
+	.button {
+		display: none !important;
+	}
 
-	/* Justify text khusus untuk konten CV */
-	.cv-content p {
+	.container {
+		max-width: 100%;
+		padding: 0;
+		margin: 0;
+	}
+
+	.page-stack {
+		gap: .6rem;
+	}
+
+	/* Justify body copy, keep headings/meta left */
+	.cv-content p,
+	.cv-ats p,
+	.cv-ats li {
 		text-align: justify;
 		text-justify: inter-word;
 		hyphens: auto;
 	}
 
-    .page-stack {
-        gap: 1rem;
-    }
+	.cv-ats__meta,
+	.cv-content .text-meta {
+		text-align: left;
+	}
 
-    /* Remove card styling */
-    .card,
-    .project-item {
-        border: none;
-        box-shadow: none;
-        padding: 0;
-        margin-bottom: 1rem;
-        page-break-inside: avoid;
-    }
+	/* Strip card/box styling so content reads as one clean document */
+	.card,
+	.project-item,
+	.cv-ats {
+		border: none !important;
+		box-shadow: none !important;
+		background: #fff !important;
+		padding: 0 !important;
+		margin: 0 0 .5rem !important;
+		page-break-inside: avoid;
+	}
 
-    .card-group {
-        display: block;
-    }
+	.card-group {
+		display: block;
+	}
 
-    /* Typography adjustment */
-    h1 {
-        font-size: 18pt;
-    }
+	/* Avoid awkward breaks right after a heading */
+	h1,
+	h2,
+	h3 {
+		page-break-after: avoid;
+		color: #000 !important;
+	}
 
-    h2 {
-        font-size: 14pt;
-    }
+	h1 { font-size: 16pt; }
+	h2 { font-size: 13pt; }
+	h3 { font-size: 11.5pt; }
 
-    h3 {
-        font-size: 12pt;
-    }
+	.text-meta,
+	.cv-ats__meta {
+		font-size: 9.5pt;
+		color: #333 !important;
+	}
 
-    .text-meta {
-        font-size: 10pt;
-        color: #444;
-    }
+	p {
+		margin-bottom: .4rem;
+	}
 
-    p {
-        margin-bottom: 0.5rem;
-    }
+	/* Keep ATS section dividers subtle but present */
+	.cv-ats__head {
+		border-bottom: 1px solid #000;
+	}
 
-    /* Tags simplified */
-    .tag {
-        border: 1px solid #ccc;
-        background: none;
-        padding: 2px 4px;
-        font-size: 10pt;
-    }
+	.cv-ats__section h2 {
+		border-bottom: 1px solid #ccc;
+	}
 
-    /* Buttons hidden */
-    .button {
-        display: none;
-    }
+	/* TAGS -> plain inline text, no pills/borders/background */
+	.tag-group {
+		gap: .25rem;
+	}
 
-    /* Links visible as text */
-    a {
-        color: #000;
-        text-decoration: none;
-    }
+	.tag-row {
+		gap: .25rem;
+	}
 
-    /* a::after {
-        content: " (" attr(href) ")";
-        font-size: 10pt;
-        color: #555;
-    } */
+	.tag,
+	.project-tag {
+		border: none !important;
+		background: none !important;
+		box-shadow: none !important;
+		padding: 0 !important;
+		color: #000 !important;
+		font-weight: var(--font-regular);
+	}
 
-    .cv-avatar {
-        box-shadow: none;
-        transform: none;
-    }
+	/* Render tags as a comma-free, spaced inline list */
+	.tag:not(:last-child)::after,
+	.project-tag:not(:last-child)::after {
+		content: " \00B7";
+		color: #666;
+	}
 
+	.tag-label {
+		font-weight: var(--font-semibold);
+		color: #000 !important;
+	}
+
+	/* Links as plain black text (no underline animation artifacts) */
+	.link,
+	a {
+		color: #000 !important;
+		text-decoration: none !important;
+	}
+
+	.link::after {
+		display: none !important;
+	}
+
+	/* ATS bullets: tidy, clearly visible, no odd markers */
+	.cv-ats ul {
+		padding-left: 1.1rem;
+	}
+
+	.cv-ats li {
+		list-style: disc;
+	}
+
+	/* Avatar stays clean on paper */
+	.cv-avatar {
+		box-shadow: none !important;
+		transform: none !important;
+		border: 1px solid #999 !important;
+	}
+
+	/* Image lightbox never prints */
+	.image-modal {
+		display: none !important;
+	}
 }

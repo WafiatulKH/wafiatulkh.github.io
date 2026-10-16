@@ -220,4 +220,55 @@
             document.getElementById("image-modal")?.classList.remove("is-open");
         }
     });
+
+    /* =====================================================
+       CV SWITCHER (role x format -> fragment)
+       Exposed globally; called by cv.html after it swaps in.
+       ===================================================== */
+    const cvState = { role: "general", format: "styled" };
+
+    function loadCvFragment() {
+        const target = document.getElementById("cv-document");
+        if (!target || !window.htmx) return;
+        const path =
+            "/pages/contents/cv/" +
+            cvState.format +
+            "-" +
+            cvState.role +
+            ".html";
+        htmx.ajax("GET", path, "#cv-document");
+    }
+
+    function syncCvButtons() {
+        document.querySelectorAll(".cv-role-btn").forEach((b) => {
+            b.classList.toggle("is-active", b.dataset.role === cvState.role);
+        });
+        document.querySelectorAll(".cv-format-btn").forEach((b) => {
+            b.classList.toggle("is-active", b.dataset.format === cvState.format);
+        });
+    }
+
+    window.initCvSwitcher = function () {
+        /* Reset to defaults each time the CV hub is opened. */
+        cvState.role = "general";
+        cvState.format = "styled";
+        syncCvButtons();
+    };
+
+    /* Delegated clicks so it survives HTMX swaps. */
+    document.addEventListener("click", function (e) {
+        const roleBtn = e.target.closest(".cv-role-btn");
+        if (roleBtn) {
+            cvState.role = roleBtn.dataset.role;
+            syncCvButtons();
+            loadCvFragment();
+            return;
+        }
+        const formatBtn = e.target.closest(".cv-format-btn");
+        if (formatBtn) {
+            cvState.format = formatBtn.dataset.format;
+            syncCvButtons();
+            loadCvFragment();
+        }
+    });
 })();
