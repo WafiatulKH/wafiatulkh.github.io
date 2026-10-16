@@ -5,7 +5,7 @@
 :root {
 
 	/* =====================================================
-	   COLORS
+	   COLORS — LIGHT THEME (default)
 	   ===================================================== */
 
 	--bg: #f6f8fb;
@@ -34,6 +34,10 @@
 	--success: #10b981;
 	--warning: #f59e0b;
 	--danger: #ef4444;
+
+	/* THEME-AWARE SURFACES (used by gradient + navbar) */
+	--bg-gradient-top: var(--surface);
+	--navbar-bg: rgba(246, 248, 251, .85);
 
 	/* =====================================================
 	   SPACING
@@ -117,4 +121,47 @@
 	--transition-fast: 160ms ease;
 	--transition-normal: 240ms ease;
 
+}
+
+/* =========================================================
+   DARK THEME
+   ========================================================= */
+
+[data-theme="dark"] {
+
+	--bg: #0b1120;
+
+	--surface: #111827;
+	--surface-soft: #1e293b;
+	--surface-hover: #273449;
+
+	--border: #1f2a3c;
+	--border-hover: #334155;
+	--border-focus: #0f766e;
+
+	/* TEXT */
+	--text-title: #f1f5f9;
+	--text-body: #e2e8f0;
+	--text-meta: #94a3b8;
+	--text-invert: #0b1120;
+
+	/* PRIMARY */
+	--primary: #2dd4bf;
+	--primary-hover: #5eead4;
+	--primary-active: #99f6e4;
+	--primary-soft: rgba(45, 212, 191, 0.12);
+
+	/* STATUS */
+	--success: #34d399;
+	--warning: #fbbf24;
+	--danger: #f87171;
+
+	/* THEME-AWARE SURFACES */
+	--bg-gradient-top: #111c33;
+	--navbar-bg: rgba(11, 17, 32, .82);
+
+	/* SHADOWS — softer on dark */
+	--shadow-sm: 0 1px 2px rgba(0, 0, 0, .4);
+	--shadow-md: 0 4px 12px rgba(0, 0, 0, .45);
+	--shadow-lg: 0 10px 24px rgba(0, 0, 0, .5);
 }

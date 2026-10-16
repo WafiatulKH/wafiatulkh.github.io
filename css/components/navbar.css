@@ -4,16 +4,58 @@
 .navbar {
 	position: sticky;
 	top: 0;
+	z-index: 50;
 	padding: var(--space-md);
-	background: rgba(246, 248, 251, .85);
+	background: var(--navbar-bg);
 	backdrop-filter: blur(8px);
+	transition: background var(--transition-normal), border-color var(--transition-normal);
 }
 
 .nav-group {
 	display: flex;
+	align-items: center;
 	justify-content: center;
 	gap: var(--space-lg);
+	flex-wrap: wrap;
 }
+
+/* =========================================================
+   THEME TOGGLE
+   ========================================================= */
+.theme-toggle {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 2.25rem;
+	height: 2.25rem;
+	margin-left: var(--space-sm);
+	padding: 0;
+	border: 1px solid var(--border);
+	border-radius: var(--radius-full);
+	background: var(--surface);
+	color: var(--text-body);
+	font-size: var(--text-md);
+	line-height: 1;
+	cursor: pointer;
+	transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.theme-toggle:hover {
+	border-color: var(--primary);
+	color: var(--primary);
+	transform: translateY(-1px);
+}
+
+.theme-toggle:active {
+	transform: translateY(0);
+}
+
+/* Show the correct glyph per theme */
+.theme-toggle .icon-dark { display: none; }
+.theme-toggle .icon-light { display: inline; }
+
+[data-theme="dark"] .theme-toggle .icon-dark { display: inline; }
+[data-theme="dark"] .theme-toggle .icon-light { display: none; }
 
 .nav-btn {
 	background: none;

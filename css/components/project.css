@@ -41,27 +41,26 @@
 ========================================= */
 
 .project-card {
-    background: #ffffff;
-    border: 1px solid #e2e8f0;
+    background: var(--surface);
+    border: 1px solid var(--border);
     border-radius: 16px;
     overflow: hidden;
 
     display: flex;
     flex-direction: column;
 
-    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+    box-shadow: var(--shadow-sm);
 
     transition:
         transform 0.3s ease,
-        box-shadow 0.3s ease;
+        box-shadow 0.3s ease,
+        background var(--transition-normal),
+        border-color var(--transition-normal);
 }
 
 .project-card:hover {
     transform: translateY(-4px);
-
-    box-shadow:
-        0 10px 25px rgba(15, 23, 42, 0.10),
-        0 4px 10px rgba(15, 23, 42, 0.05);
+    box-shadow: var(--shadow-lg);
 }
 
 
@@ -144,21 +143,21 @@
 
     border-radius: 6px;
 
-    background: #eff6ff;
-    color: #0369a1;
+    background: var(--primary-soft);
+    color: var(--primary-active);
 
     font-size: 12px;
     font-weight: 600;
 }
 
 .project-tag.green {
-    background: #ecfdf5;
-    color: #059669;
+    background: rgba(16, 185, 129, 0.12);
+    color: var(--success);
 }
 
 .project-tag.gray {
-    background: #f1f5f9;
-    color: #475569;
+    background: var(--surface-soft);
+    color: var(--text-meta);
 }
 
 
@@ -169,7 +168,7 @@
 .project-title {
     margin: 0;
 
-    color: #0f2f55;
+    color: var(--text-title);
 
     font-size: 24px;
     line-height: 1.4;
@@ -179,7 +178,7 @@
 }
 
 .project-card:hover .project-title {
-    color: #0369a1;
+    color: var(--primary);
 }
 
 
@@ -190,7 +189,7 @@
 .project-description {
     margin: 0;
 
-    color: #475569;
+    color: var(--text-meta);
 
     font-size: 16px;
     line-height: 1.7;

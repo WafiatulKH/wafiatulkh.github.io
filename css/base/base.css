@@ -12,7 +12,10 @@ body {
 	font-size: var(--text-md);
 	line-height: var(--leading-normal);
 	color: var(--text-body);
-	background: radial-gradient(circle at top, var(--surface) 0%, var(--bg) 60%);
+	background: radial-gradient(circle at top, var(--bg-gradient-top) 0%, var(--bg) 60%);
+	background-attachment: fixed;
+	min-height: 100vh;
+	transition: background var(--transition-normal), color var(--transition-normal);
 }
 
 .container {

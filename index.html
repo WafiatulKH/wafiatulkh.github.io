@@ -1,15 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
-    <title>Wafi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wafiatul Khoiriah H · Portfolio</title>
 
-    <link rel="icon" href="assets/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    <meta name="description"
+        content="Portfolio of Wafiatul Khoiriah Harahap — Quantitative Data Analyst & Business Intelligence.">
+
+    <!-- FAVICONS (multi-platform, generated from PNG source) -->
+    <link rel="icon" href="assets/favicon_io/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon_io/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon_io/apple-touch-icon.png">
+    <link rel="manifest" href="assets/favicon_io/site.webmanifest">
+    <meta name="theme-color" content="#14b8a6">
 
     <meta name="api-base" content="https://simple-go-production.up.railway.app">
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- THEME BOOTSTRAP (prevents flash of wrong theme) -->
+    <script>
+        (function () {
+            try {
+                var stored = localStorage.getItem("wafi-theme");
+                var prefersDark = window.matchMedia &&
+                    window.matchMedia("(prefers-color-scheme: dark)").matches;
+                var theme = stored || (prefersDark ? "dark" : "light");
+                document.documentElement.setAttribute("data-theme", theme);
+            } catch (e) {
+                document.documentElement.setAttribute("data-theme", "light");
+            }
+        })();
+    </script>
 
     <!-- HTMX -->
     <script src="https://unpkg.com/htmx.org@1.9.12"></script>
@@ -47,7 +70,7 @@
         <!-- FOOTER -->
         <footer>
             <p class="text-footer">
-                Architecture: HTMX + Go API
+                Built with HTMX &middot; Designed &amp; maintained by Wafiatul Khoiriah H
             </p>
         </footer>
 
@@ -56,108 +79,6 @@
     <!-- SCRIPTS -->
     <script src="js/config.js"></script>
     <script src="js/script.js"></script>
-    <script>
-        const API_BASE = document
-            .querySelector('meta[name="api-base"]')
-            .getAttribute("content");
-
-        const BASE_PATH = (
-            location.hostname === "localhost" ||
-            location.hostname === "127.0.0.1"
-        ) ? "" : "";
-
-        /* =========================================================
-        HTMX ROUTING
-        ========================================================= */
-        document.body.addEventListener("htmx:configRequest", function (event) {
-            let path = event.detail.path;
-
-            if (!path) return;
-
-            if (path.startsWith("/api")) {
-                event.detail.path = API_BASE + path;
-                return;
-            }
-
-            if (!path.startsWith("http")) {
-                event.detail.path = BASE_PATH + path;
-            }
-        });
-
-        /* =========================================================
-        NAV ACTIVE STATE
-        ========================================================= */
-        function setActive(button) {
-            document.querySelectorAll(".nav-btn")
-                .forEach(btn => btn.classList.remove("is-active"));
-
-            button.classList.add("is-active");
-        }
-
-        document.body.addEventListener("click", function (e) {
-            const btn = e.target.closest(".nav-btn");
-            if (btn) setActive(btn);
-        });
-
-        /* =========================================================
-        LOADING STATE
-        ========================================================= */
-        const loadingEl = document.getElementById("loading");
-
-        document.body.addEventListener("htmx:beforeRequest", () => {
-            loadingEl?.classList.remove("hidden");
-        });
-
-        document.body.addEventListener("htmx:afterRequest", () => {
-            loadingEl?.classList.add("hidden");
-        });
-
-        /* =========================================================
-        ERROR HANDLING
-        ========================================================= */
-        document.body.addEventListener("htmx:responseError", (event) => {
-            loadingEl?.classList.add("hidden");
-
-            const status = event.detail.xhr.status;
-
-            console.error("HTMX Error:", {
-                status,
-                response: event.detail.xhr.responseText
-            });
-
-            handleError(status);
-        });
-
-        document.body.addEventListener("htmx:sendError", () => {
-            loadingEl?.classList.add("hidden");
-            safeLoadError("/pages/errors/network.html");
-        });
-
-        /* =========================================================
-        ERROR ROUTER
-        ========================================================= */
-        function handleError(status) {
-            if (status === 404) {
-                safeLoadError("/pages/errors/404.html");
-            } else if (status >= 500) {
-                safeLoadError("/pages/errors/500.html");
-            } else {
-                safeLoadError("/pages/errors/general.html");
-            }
-        }
-
-        /* =========================================================
-        SAFE ERROR LOADER (ANTI-LOOP)
-        ========================================================= */
-        let isHandlingError = false;
-
-        function safeLoadError(path) {
-            if (isHandlingError) return; // prevent infinite loop
-            isHandlingError = true;
-
-            htmx.ajax("GET", path, "#content");
-        }
-    </script>
 
 </body>
 </html>

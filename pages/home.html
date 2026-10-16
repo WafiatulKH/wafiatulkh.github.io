@@ -1,21 +1,150 @@
-<div class="card">
+<div class="card-group">
 
-    <h1>Hey there, I’m Wafi! 👋</h1>
+    <!-- ================= HERO ================= -->
+    <div class="card">
 
-    <h5>Quantitative Data Analyst | Business Intelligence</h5>
+        <div class="cv-header">
 
-    <p>
-    Transforming messy business data into <strong>sleek, visual stories</strong>. Armed with a <strong>Mathematics degree</strong>, I leverage <strong>Power BI & SQL</strong> to build interactive dashboards and quantitative models that drive decision-making.
-</p>
+            <img
+                src="assets/Avatar.jpg"
+                alt="Wafiatul Khoiriah H"
+                class="avatar cv-avatar"
+            />
+
+            <div class="cv-info">
+
+                <h1>Hey there, I&rsquo;m Wafi! 👋</h1>
+
+                <h5>Quantitative Data Analyst · Business Intelligence</h5>
+
+                <p>
+                    Transforming messy business data into <strong>sleek, visual stories</strong>.
+                    Armed with a <strong>Mathematics degree</strong>, I leverage
+                    <strong>Power BI &amp; SQL</strong> to build interactive dashboards and
+                    quantitative models that drive decision-making.
+                </p>
+
+                <div class="tag-row" style="margin-top: var(--space-md);">
+                    <a class="button button--primary"
+                        hx-get="/pages/projects.html"
+                        hx-target="#content"
+                        hx-swap="innerHTML"
+                        hx-indicator="#loading">
+                        View Projects →
+                    </a>
+                    <a class="button button--secondary"
+                        hx-get="/pages/cv.html"
+                        hx-target="#content"
+                        hx-swap="innerHTML"
+                        hx-indicator="#loading">
+                        Curriculum Vitae
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= ABOUT ================= -->
+    <div class="card">
+
+        <h2>About Me</h2>
+
+        <p>
+            With a solid foundation in Mathematics, I see data as a puzzle waiting to be solved.
+            I specialize in quantitative modeling, interactive BI dashboards, and end-to-end
+            data analysis — bridging the gap between heavy technical analytics and real
+            business value.
+        </p>
+
+        <p>
+            My goal is to make data simple, visually compelling, and actionable. Whether it is
+            customer segmentation, workforce analytics, or trend modeling, I focus on clarity,
+            readability, and insights that teams can act on.
+        </p>
+
+    </div>
+
+    <!-- ================= SKILLS ================= -->
+    <div class="card">
+
+        <h2>What I Work With</h2>
+
+        <div class="tag-group">
+
+            <div class="tag-row">
+                <span class="tag-label">Analytics</span>
+                <span class="tag">Power BI</span>
+                <span class="tag">DAX</span>
+                <span class="tag">RFM Analysis</span>
+                <span class="tag">Statistical Modeling</span>
+            </div>
+
+            <div class="tag-row">
+                <span class="tag-label">Data</span>
+                <span class="tag">SQL</span>
+                <span class="tag">Python</span>
+                <span class="tag">Ms Excel</span>
+                <span class="tag">Data Cleaning</span>
+            </div>
+
+            <div class="tag-row">
+                <span class="tag-label">Domains</span>
+                <span class="tag">Business Intelligence</span>
+                <span class="tag">Quantitative Math</span>
+                <span class="tag">HR Analytics</span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= HIGHLIGHTS ================= -->
+    <div class="card">
+
+        <h2>Highlights</h2>
+
+        <div class="table-wrapper">
+
+            <table class="table is-striped">
+
+                <thead>
+                    <tr>
+                        <th>Area</th>
+                        <th>Focus</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr class="is-clickable">
+                        <td>Dashboards</td>
+                        <td>Interactive Power BI reporting &amp; KPIs</td>
+                        <td class="is-success">Active</td>
+                    </tr>
+                    <tr class="is-clickable">
+                        <td>Modeling</td>
+                        <td>Quantitative &amp; actuarial modeling</td>
+                        <td class="is-success">Active</td>
+                    </tr>
+                    <tr class="is-clickable">
+                        <td>Teaching</td>
+                        <td>Computational mathematics &amp; numerical methods</td>
+                        <td class="is-success">Active</td>
+                    </tr>
+                    <tr class="is-clickable">
+                        <td>Research</td>
+                        <td>Graph theory &amp; graph coloring</td>
+                        <td class="is-warning">Ongoing</td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
 
 </div>
-
-<!-- <div style="margin-top: var(--space-md); display:flex; gap:var(--space-sm); flex-wrap:wrap;">
-
-    <a href="#"
-       target="_blank"
-       class="button button--secondary">
-        Explore Projects →
-    </a>
-
-</div> -->

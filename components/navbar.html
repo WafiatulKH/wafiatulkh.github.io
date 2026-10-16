@@ -7,21 +7,21 @@
             hx-indicator="#loading">
             Home
         </button>
-        
+
         <button class="nav-btn"
-            hx-get="/pages/about.html"
-            hx-target="#content"
-            hx-swap="innerHTML"
-            hx-indicator="#loading">
-            About
-        </button>
-       
-        <button class="nav-btn"
-            hx-get="/pages/project2.html"
+            hx-get="/pages/projects.html"
             hx-target="#content"
             hx-swap="innerHTML"
             hx-indicator="#loading">
             Projects
+        </button>
+
+        <button class="nav-btn"
+            hx-get="/pages/experiences.html"
+            hx-target="#content"
+            hx-swap="innerHTML"
+            hx-indicator="#loading">
+            Experiences
         </button>
 
         <button class="nav-btn"
@@ -38,6 +38,15 @@
             hx-swap="innerHTML"
             hx-indicator="#loading">
             Contact
+        </button>
+
+        <!-- THEME TOGGLE -->
+        <button type="button"
+            class="theme-toggle"
+            aria-label="Toggle dark mode"
+            title="Toggle dark / light mode">
+            <span class="icon-light">🌙</span>
+            <span class="icon-dark">☀️</span>
         </button>
     </div>
 </nav>
