@@ -69,9 +69,10 @@
         }
     });
 
-    /* Re-apply correct label once the navbar fragment is swapped in. */
+    /* Re-apply correct toggle states once a fragment (e.g. navbar) swaps in. */
     document.body.addEventListener("htmx:afterSwap", function () {
         applyTheme(document.documentElement.getAttribute("data-theme") || "light");
+        syncLangToggle(getLang());
     });
 
     /* Follow system changes only when the user hasn't chosen explicitly. */
@@ -86,6 +87,88 @@
     }
 
     /* =====================================================
+       LANGUAGE (en / id)
+       ===================================================== */
+    const LANG_KEY = "wafi-lang";
+    const SUPPORTED_LANGS = ["en", "id"];
+
+    /* Remember the last language-neutral content route so we can
+       re-fetch the same page when the language changes. */
+    let currentContentRoute = CONFIG.DEFAULT_ROUTE;
+
+    function getLang() {
+        let lang;
+        try {
+            lang = localStorage.getItem(LANG_KEY);
+        } catch (_) {
+            lang = null;
+        }
+        if (!lang) {
+            const nav = (navigator.language || "en").toLowerCase();
+            lang = nav.startsWith("id") ? "id" : "en";
+        }
+        return SUPPORTED_LANGS.includes(lang) ? lang : "en";
+    }
+
+    function setLang(lang) {
+        try {
+            localStorage.setItem(LANG_KEY, lang);
+        } catch (_) {
+            /* ignore storage errors */
+        }
+        document.documentElement.setAttribute("lang", lang);
+        syncLangToggle(lang);
+    }
+
+    function syncLangToggle(lang) {
+        /* Single-button toggle: show the ACTIVE language label. */
+        document.querySelectorAll("[data-lang-label]").forEach((el) => {
+            el.textContent = lang.toUpperCase();
+        });
+        const toggle = document.querySelector(".lang-toggle");
+        if (toggle) {
+            const other = lang === "en" ? "Indonesian" : "English";
+            toggle.setAttribute("aria-label", "Switch to " + other);
+            toggle.setAttribute("title", "Switch to " + other);
+        }
+    }
+
+    /* Insert the active-language suffix into a neutral fragment path.
+       /pages/home.html            -> /pages/home-en.html
+       /pages/contents/cv/x.html   -> /pages/contents/cv/x-id.html
+       Already-suffixed or non-fragment paths are returned unchanged. */
+    function localizePath(path) {
+        if (!path) return path;
+        const isFragment =
+            path.startsWith("/pages/") || path.startsWith("/components/");
+        if (!isFragment) return path;
+        if (!path.endsWith(".html")) return path;
+        if (/-(en|id)\.html$/.test(path)) return path; // already localized
+        return path.replace(/\.html$/, "-" + getLang() + ".html");
+    }
+
+    /* Re-fetch navbar + current page content in the newly chosen language. */
+    function reloadForLanguage() {
+        if (!window.htmx) return;
+        const navTarget = document.querySelector("nav");
+        if (navTarget) {
+            htmx.ajax("GET", "/components/navbar.html", { target: "nav", swap: "innerHTML" });
+        }
+        htmx.ajax("GET", currentContentRoute, { target: "#content", swap: "innerHTML" });
+    }
+
+    /* Apply stored language on load. */
+    setLang(getLang());
+
+    document.addEventListener("click", function (e) {
+        if (e.target.closest(".lang-toggle")) {
+            const next = getLang() === "en" ? "id" : "en";
+            setLang(next);
+            reloadForLanguage();
+        }
+    });
+
+    /* =====================================================
        HTMX ROUTING
        ===================================================== */
     document.body.addEventListener("htmx:configRequest", function (event) {
@@ -97,8 +180,15 @@
             return;
         }
 
+        /* Track the neutral content route (anything targeting #content
+           that isn't a CV sub-fragment) so language switches can replay it. */
+        const targetSel = event.detail.target && event.detail.target.id;
+        if (targetSel === "content" && !/-(en|id)\.html$/.test(path)) {
+            currentContentRoute = path;
+        }
+
         if (!path.startsWith("http")) {
-            event.detail.path = CONFIG.BASE_PATH + path;
+            event.detail.path = CONFIG.BASE_PATH + localizePath(path);
         }
     });
 

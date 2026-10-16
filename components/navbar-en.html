@@ -1,0 +1,61 @@
+<nav class="navbar card">
+    <div class="nav-group">
+        <button class="nav-btn is-active"
+            hx-get="/pages/home.html"
+            hx-target="#content"
+            hx-swap="innerHTML"
+            hx-indicator="#loading">
+            Home
+        </button>
+
+        <button class="nav-btn"
+            hx-get="/pages/projects.html"
+            hx-target="#content"
+            hx-swap="innerHTML"
+            hx-indicator="#loading">
+            Projects
+        </button>
+
+        <button class="nav-btn"
+            hx-get="/pages/experiences.html"
+            hx-target="#content"
+            hx-swap="innerHTML"
+            hx-indicator="#loading">
+            Experiences
+        </button>
+
+        <button class="nav-btn"
+            hx-get="/pages/cv.html"
+            hx-target="#content"
+            hx-swap="innerHTML"
+            hx-indicator="#loading">
+            Curriculum Vitae
+        </button>
+
+        <button class="nav-btn"
+            hx-get="/pages/contact.html"
+            hx-target="#content"
+            hx-swap="innerHTML"
+            hx-indicator="#loading">
+            Contact
+        </button>
+
+        <!-- LANGUAGE TOGGLE -->
+        <button type="button"
+            class="lang-toggle"
+            title="Switch language"
+            aria-label="Switch language">
+            <span class="lang-toggle__icon">🌐</span>
+            <span class="lang-toggle__label" data-lang-label>EN</span>
+        </button>
+
+        <!-- THEME TOGGLE -->
+        <button type="button"
+            class="theme-toggle"
+            aria-label="Toggle dark mode"
+            title="Toggle dark / light mode">
+            <span class="icon-light">🌙</span>
+            <span class="icon-dark">☀️</span>
+        </button>
+    </div>
+</nav>

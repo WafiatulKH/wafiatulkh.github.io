@@ -19,17 +19,26 @@
     <meta name="api-base" content="https://simple-go-production.up.railway.app">
     <link rel="stylesheet" href="css/app.css">
 
-    <!-- THEME BOOTSTRAP (prevents flash of wrong theme) -->
+    <!-- THEME + LANGUAGE BOOTSTRAP (prevents flash / wrong attributes) -->
     <script>
         (function () {
+            var root = document.documentElement;
             try {
                 var stored = localStorage.getItem("wafi-theme");
                 var prefersDark = window.matchMedia &&
                     window.matchMedia("(prefers-color-scheme: dark)").matches;
-                var theme = stored || (prefersDark ? "dark" : "light");
-                document.documentElement.setAttribute("data-theme", theme);
+                root.setAttribute("data-theme", stored || (prefersDark ? "dark" : "light"));
             } catch (e) {
-                document.documentElement.setAttribute("data-theme", "light");
+                root.setAttribute("data-theme", "light");
+            }
+            try {
+                var lang = localStorage.getItem("wafi-lang");
+                if (!lang) {
+                    lang = (navigator.language || "en").toLowerCase().indexOf("id") === 0 ? "id" : "en";
+                }
+                root.setAttribute("lang", lang);
+            } catch (e) {
+                root.setAttribute("lang", "en");
             }
         })();
     </script>

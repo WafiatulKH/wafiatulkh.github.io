@@ -1,0 +1,47 @@
+<div class="page-stack cv-page">
+
+    <!-- ================= CV CONTROLS (hidden on print) ================= -->
+    <div class="card cv-controls no-print">
+
+        <div class="cv-controls__row">
+            <span class="cv-controls__label">Role</span>
+            <div class="cv-role-group" role="group" aria-label="CV role">
+                <button class="button button--secondary cv-role-btn is-active" data-role="general">General</button>
+                <button class="button button--secondary cv-role-btn" data-role="data-science">Data Science</button>
+                <button class="button button--secondary cv-role-btn" data-role="teaching">Teaching</button>
+                <button class="button button--secondary cv-role-btn" data-role="it">IT</button>
+            </div>
+        </div>
+
+        <div class="cv-controls__row">
+            <span class="cv-controls__label">Format</span>
+            <div class="cv-format-group" role="group" aria-label="CV format">
+                <button class="button button--secondary cv-format-btn is-active" data-format="styled">Styled</button>
+                <button class="button button--secondary cv-format-btn" data-format="ats">ATS</button>
+            </div>
+
+            <button type="button" class="button button--primary cv-print-btn" onclick="window.print()">
+                Print / Save PDF
+            </button>
+        </div>
+
+        <p class="text-meta cv-controls__hint">
+            Styled view is for the web. ATS view is a plain, single-column layout optimized for
+            applicant tracking systems — use &ldquo;Print / Save PDF&rdquo; to export it.
+        </p>
+
+    </div>
+
+    <!-- ================= CV DOCUMENT (swapped by HTMX) ================= -->
+    <div id="cv-document"
+        class="cv-document"
+        hx-get="/pages/contents/cv/styled-general.html"
+        hx-trigger="load"
+        hx-swap="innerHTML">
+    </div>
+
+</div>
+
+<script>
+    if (window.initCvSwitcher) window.initCvSwitcher();
+</script>
